@@ -5,6 +5,12 @@ using Random = UnityEngine.Random;
 public class Blaster : Weapon
 {
     public int numberOfPellets;
+
+    private void Awake() 
+    {
+        base.TimeToLive = 5f;
+    }
+
     public override void Shoot()
     {
         for (int i = 0; i < numberOfPellets; i++)

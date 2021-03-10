@@ -1,30 +1,58 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponSlot : MonoBehaviour
 {
-    private GameObject _attualWeapon;
+    [SerializeField] private GameObject _defaultWeaponGO;
+    private GameObject _attualWeaponGO;
+    private float _weaponTimer;
+    private bool isPicked;
 
     private void Awake() 
     {
-        _attualWeapon = GetComponentInChildren<Weapon>().gameObject;
+        // Default weapon at beginning 
+        _attualWeaponGO = _defaultWeaponGO;
+        isPicked = false;
     }
 
-    public void PickWeapon(GameObject newWeapon, out Weapon _playerWeapon)
+    private Update() 
     {
-        _attualWeapon.SetActive(false);
-        _attualWeapon.GetComponent<Weapon>().enabled = false;
+        if(isPicked)
+            _weaponTimer -= Time.deltaTime;
 
-        newWeapon.transform.parent = transform;
-        newWeapon.transform.position = transform.position;
-        newWeapon.transform.rotation = transform.rotation;
-
-        newWeapon.SetActive(true);
-        newWeapon.GetComponent<Weapon>().enabled = true;
-        
-        _playerWeapon = newWeapon.GetComponent<Weapon>();
+        if(_weaponTimer <= 0f)
+            ResetDefaultWeapon();
 
     }
 
+    public void PickWeapon(GameObject newWeaponGO, out Weapon _playerWeapon)
+    {
+        var attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+
+        if(attualWeaponScript.IsDefaultWeapon)
+        {
+            _attualWeaponGO.SetActive(false);
+            attualWeaponScript.enabled = false;
+        }
+        else
+        {
+            Destroy(_attualWeaponGO);
+        }
+        
+        newWeaponGO.transform.parent = transform;
+        newWeaponGO.transform.position = transform.position;
+        newWeaponGO.transform.rotation = transform.rotation;
+
+        newWeaponGO.SetActive(true);
+        newWeaponGO.GetComponent<Weapon>().enabled = true;
+
+        _attualWeaponGO = newWeaponGO;
+        _playerWeapon = _attualWeaponGO.GetComponent<Weapon>();
+
+        isPicked = true;
+        _weaponTimer = _playerWeapon.TimeToLive;
+
+
+    }
+  
 }

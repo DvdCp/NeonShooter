@@ -230,10 +230,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6723607252128106756}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd6496de2a69fd04e9348e743ab00ad2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 972021119396679802, guid: 3da31026bf3dcf349b1a2c249f9d6900, type: 3}
   _weaponMuzzle: {fileID: 4285124370250195011}
+  isDefaultWeapon: 1
+  timeToLive: 0

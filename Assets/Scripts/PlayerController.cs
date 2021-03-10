@@ -7,19 +7,17 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _rotator;
-    [SerializeField] private GameObject _weaponSlot;
-    //[SerializeField] private Transform _gunMuzzle;
-    //[SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private WeaponSlot _weaponSlot;
     
     private PlayerControls _controls;
     private Vector2 _leftStickValue;
     private Vector2 _rightStickValue;
-    
+    private Weapon _playerWeapon;
     public float speed;
     public float rotationSpeed;
 
     private void Awake()
-    {
+    {      
         _controls = new PlayerControls();
 
         _controls.Controls.Move.performed += ctx => _leftStickValue = ctx.ReadValue<Vector2>();
@@ -31,6 +29,13 @@ public class PlayerController : MonoBehaviour
         _controls.Controls.Shoot.started += ctx => Shoot();
         
         _controls.Controls.Reload.started += ctx => Reload();
+
+    }
+
+    private void Start() 
+    {
+        //Getting default weapon
+        _playerWeapon = _weaponSlot.gameObject.GetComponentInChildren<Weapon>();
     }
 
     private void Update()
@@ -45,14 +50,13 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        var weapon = _weaponSlot.GetComponentInChildren<Weapon>();
-        weapon.Shoot();
+        _playerWeapon.Shoot();
     }
 
     private void Reload()
     {
-        var weapon = _weaponSlot.GetComponentInChildren<Weapon>();
-        weapon.Reload();
+       _playerWeapon.Reload();
+        
     }
 
     private void OnEnable()
@@ -63,5 +67,11 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         _controls.Controls.Disable();
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        _weaponSlot.PickWeapon(other.gameObject, out _playerWeapon);
+        
     }
 }

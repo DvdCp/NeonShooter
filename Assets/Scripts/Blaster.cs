@@ -13,6 +13,7 @@ public class Blaster : Weapon
             float Yoffset = Random.Range(-1f, 1f);
             Vector3 appliedOffset = new Vector3(  Xoffset, _weaponMuzzle.position.y + Yoffset,  _weaponMuzzle.position.z);
             Instantiate(_bulletPrefab, appliedOffset, _weaponMuzzle.rotation);
+            
         }
         
     }

@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Transform _rotator;
     [SerializeField] private WeaponSlot _weaponSlot;
-    
     private PlayerControls _controls;
     private Vector2 _leftStickValue;
     private Vector2 _rightStickValue;
-    private Weapon _playerWeapon;
     public float speed;
     public float rotationSpeed;
 
@@ -22,16 +20,6 @@ public class PlayerController : MonoBehaviour
         _controls.Controls.Rotate.performed += ctx => _rightStickValue = ctx.ReadValue<Vector2>();
         //_controls.Controls.Rotate.canceled += ctx => _rightStickValue = Vector2.zero;
         
-        _controls.Controls.Shoot.started += ctx => Shoot();
-        
-        _controls.Controls.Reload.started += ctx => Reload();
-
-    }
-
-    private void Start() 
-    {
-        //Getting default weapon
-        _playerWeapon = _weaponSlot.gameObject.GetComponentInChildren<Weapon>();
     }
 
     private void Update()
@@ -44,30 +32,18 @@ public class PlayerController : MonoBehaviour
         _rotator.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
-    private void Shoot()
+    private void OnTriggerEnter(Collider other) 
     {
-        _playerWeapon.Shoot();
-    }
-
-    private void Reload()
-    {
-       _playerWeapon.Reload();
-        
+        _weaponSlot.PickWeapon(other.gameObject); 
     }
 
     private void OnEnable()
     {
         _controls.Controls.Enable();
     }
-
+    
     private void OnDisable()
     {
         _controls.Controls.Disable();
-    }
-
-    private void OnTriggerEnter(Collider other) 
-    {
-        _weaponSlot.PickWeapon(other.gameObject, out _playerWeapon);
-        
     }
 }

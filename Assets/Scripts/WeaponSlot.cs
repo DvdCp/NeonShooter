@@ -5,34 +5,48 @@ public class WeaponSlot : MonoBehaviour
 {
     [SerializeField] private GameObject _defaultWeaponGO;
     private GameObject _attualWeaponGO;
+    private Weapon _attualWeaponScript;
     private float _weaponTimer;
-    private bool isPicked;
+    private bool isNewWeaponPicked;
 
-    private void Awake() 
+    void Awake() 
     {
         // Default weapon at beginning 
         _attualWeaponGO = _defaultWeaponGO;
-        isPicked = false;
+        _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+        isNewWeaponPicked = false;
     }
 
-    private Update() 
+    void Update() 
     {
-        if(isPicked)
+        if(isNewWeaponPicked)
+        {
             _weaponTimer -= Time.deltaTime;
 
-        if(_weaponTimer <= 0f)
-            ResetDefaultWeapon();
-
+             if(_weaponTimer <= 0f)
+                ResetDefaultWeapon();
+        }
+            
+        
+       
     }
 
-    public void PickWeapon(GameObject newWeaponGO, out Weapon _playerWeapon)
+    public void UseWeapon()
     {
-        var attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+        _attualWeaponScript.Shoot();
+    }
 
-        if(attualWeaponScript.IsDefaultWeapon)
+    public void RelaodWeapon()
+    {
+        _attualWeaponScript.Reload();
+    }
+
+    public void PickWeapon(GameObject newWeaponGO)
+    {
+        if(_attualWeaponScript.IsDefaultWeapon)
         {
             _attualWeaponGO.SetActive(false);
-            attualWeaponScript.enabled = false;
+            _attualWeaponScript.enabled = false;
         }
         else
         {
@@ -42,16 +56,25 @@ public class WeaponSlot : MonoBehaviour
         newWeaponGO.transform.parent = transform;
         newWeaponGO.transform.position = transform.position;
         newWeaponGO.transform.rotation = transform.rotation;
-
-        newWeaponGO.SetActive(true);
-        newWeaponGO.GetComponent<Weapon>().enabled = true;
+        //newWeaponGO.SetActive(true);
+        //newWeaponGO.GetComponent<Weapon>().enabled = true;
 
         _attualWeaponGO = newWeaponGO;
-        _playerWeapon = _attualWeaponGO.GetComponent<Weapon>();
 
-        isPicked = true;
-        _weaponTimer = _playerWeapon.TimeToLive;
+        _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
 
+        _weaponTimer = _attualWeaponScript.TimeToLive;
+        isNewWeaponPicked = true;
+    }
+
+    private void ResetDefaultWeapon()
+    {
+        Destroy(_attualWeaponGO);
+        
+        _attualWeaponGO = _defaultWeaponGO;
+        _attualWeaponGO.SetActive(true);
+        _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+        isNewWeaponPicked = false;
 
     }
   

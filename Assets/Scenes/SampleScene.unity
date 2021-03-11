@@ -453,6 +453,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2226555734865681859, guid: f235fadfa07ddc34e83f27211d3a3acb, type: 3}
+      propertyPath: timeToLive
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2226555734865681859, guid: f235fadfa07ddc34e83f27211d3a3acb, type: 3}
+      propertyPath: numberOfPelletsPerShot
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4860912246757090961, guid: f235fadfa07ddc34e83f27211d3a3acb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -592,6 +600,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 820343605148142793, guid: 8fd0eb6697a707148856c2c5717aa4b1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 820343605148142793, guid: 8fd0eb6697a707148856c2c5717aa4b1, type: 3}
+      propertyPath: timeToLive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3269014869244688345, guid: 8fd0eb6697a707148856c2c5717aa4b1, type: 3}
       propertyPath: m_Name
       value: Player

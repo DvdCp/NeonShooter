@@ -7,7 +7,6 @@ public class PlayerShooting : MonoBehaviour
      [SerializeField] private WeaponSlot _weaponSlot;
      private PlayerControls _controls;
 
-    // Start is called before the first frame update
     void Awake()
     {   
         _controls = new PlayerControls();

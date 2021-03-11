@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 public class Blaster : Weapon
 {
-    public int numberOfPellets;
+    public int numberOfPelletsPerShot;
 
     private void Awake() 
     {
@@ -13,15 +13,13 @@ public class Blaster : Weapon
 
     public override void Shoot()
     {
-        for (int i = 0; i < numberOfPellets; i++)
+        for (int i = 0; i < numberOfPelletsPerShot; i++)
         {
             float Xoffset = Random.Range(-1f, 1f);
             float Yoffset = Random.Range(-1f, 1f);
             Vector3 appliedOffset = new Vector3( _weaponMuzzle.position.x + Xoffset, _weaponMuzzle.position.y + Yoffset,  _weaponMuzzle.position.z);
             Instantiate(_bulletPrefab, appliedOffset, _weaponMuzzle.rotation);
-            
         }
-        
     }
 
     public override void Reload()

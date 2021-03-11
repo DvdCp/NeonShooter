@@ -12,9 +12,7 @@ public class WeaponSlot : MonoBehaviour
     void Awake() 
     {
         // Default weapon at beginning 
-        _attualWeaponGO = _defaultWeaponGO;
-        _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
-        isNewWeaponPicked = false;
+        ResetDefaultWeapon();
     }
 
     void Update() 
@@ -25,10 +23,7 @@ public class WeaponSlot : MonoBehaviour
 
              if(_weaponTimer <= 0f)
                 ResetDefaultWeapon();
-        }
-            
-        
-       
+        }   
     }
 
     public void UseWeapon()
@@ -70,11 +65,15 @@ public class WeaponSlot : MonoBehaviour
     private void ResetDefaultWeapon()
     {
         Destroy(_attualWeaponGO);
-        
+
         _attualWeaponGO = _defaultWeaponGO;
         _attualWeaponGO.SetActive(true);
+
         _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+        _attualWeaponScript.enabled = true;
+        
         isNewWeaponPicked = false;
+        _weaponTimer = 0f;
 
     }
   

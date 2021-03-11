@@ -57,6 +57,7 @@ public class WeaponSlot : MonoBehaviour
         _attualWeaponGO = newWeaponGO;
 
         _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
+        _attualWeaponScript.IsPicked = true;
 
         _weaponTimer = _attualWeaponScript.TimeToLive;
         isNewWeaponPicked = true;
@@ -71,7 +72,8 @@ public class WeaponSlot : MonoBehaviour
 
         _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
         _attualWeaponScript.enabled = true;
-        
+        _attualWeaponScript.IsPicked = true;
+
         isNewWeaponPicked = false;
         _weaponTimer = 0f;
 

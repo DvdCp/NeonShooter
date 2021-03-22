@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 3269014869244688347}
   - component: {fileID: 3269014869244688346}
   - component: {fileID: 1762933524928235103}
-  - component: {fileID: 8194361906802085492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -159,19 +158,6 @@ MonoBehaviour:
   _weaponSlot: {fileID: 3269014868974804398}
   speed: 5
   rotationSpeed: 30
---- !u!114 &8194361906802085492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3269014869244688345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f08b0b8a016454488d88d35bb202324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponSlot: {fileID: 3269014868974804398}
 --- !u!1 &3269014870239774928
 GameObject:
   m_ObjectHideFlags: 0

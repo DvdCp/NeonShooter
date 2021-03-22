@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponSlot : MonoBehaviour
 {
@@ -8,11 +8,13 @@ public class WeaponSlot : MonoBehaviour
     private Weapon _attualWeaponScript;
     private float _weaponTimer;
     private bool isNewWeaponPicked;
+    private bool isPullingTrigger;
 
     void Awake() 
     {
         // Default weapon at beginning 
         ResetDefaultWeapon();
+        isPullingTrigger = false;
     }
 
     void Update() 
@@ -24,16 +26,9 @@ public class WeaponSlot : MonoBehaviour
              if(_weaponTimer <= 0f)
                 ResetDefaultWeapon();
         }   
-    }
 
-    public void UseWeapon()
-    {
-        _attualWeaponScript.Shoot();
-    }
-
-    public void RelaodWeapon()
-    {
-        _attualWeaponScript.Reload();
+        if(isPullingTrigger)
+            _attualWeaponScript.Shoot();  
     }
 
     public void PickWeapon(GameObject newWeaponGO)
@@ -58,6 +53,7 @@ public class WeaponSlot : MonoBehaviour
 
         _attualWeaponScript = _attualWeaponGO.GetComponent<Weapon>();
         _attualWeaponScript.IsPicked = true;
+        _attualWeaponScript.GetComponent<Collider>().isTrigger = true;
 
         _weaponTimer = _attualWeaponScript.TimeToLive;
         isNewWeaponPicked = true;
@@ -76,7 +72,17 @@ public class WeaponSlot : MonoBehaviour
 
         isNewWeaponPicked = false;
         _weaponTimer = 0f;
+    }
 
+    public void UseWeapon (InputAction.CallbackContext ctx)
+    {
+        if(ctx.started)
+            isPullingTrigger = true;
+        if(ctx.canceled)
+        {
+            isPullingTrigger = false;
+            _attualWeaponScript.ResetShoot();
+        }  
     }
   
 }

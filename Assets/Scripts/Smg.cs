@@ -1,22 +1,23 @@
-﻿using System;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
 public class Smg : Weapon
 {
-   
-    private void Awake() 
-    {
-        base.TimeToLive = 5f;
-    }
+    [SerializeField] private float rateoOfFire;
 
     public override void Shoot()
     {
-         Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);  
+        if(ReadyToShoot)
+        {
+            ReadyToShoot = false;
+
+            Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+
+            if(AllowButtonHold)
+                Invoke("ResetShoot", 1/rateoOfFire);
+
+            //(bulletToShoot > 0) // per la raffica
+                //Invoke("Shoot",0.3f);
+        }
     }
 
-    public override void Reload()
-    {
-        Debug.Log("Reloading...");
-    }
 }

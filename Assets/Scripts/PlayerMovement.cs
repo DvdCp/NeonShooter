@@ -6,9 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _rotator;
     [SerializeField] private WeaponSlot _weaponSlot;
     private Vector2 movement,rotation;
-    public float speed;
-    public float rotationSpeed;
-    
+    public float speed, rotationSpeed;
+
     private void Update()
     {
         // Do movement
@@ -16,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
         transform.Translate(movement * Time.deltaTime * speed, Space.World);
 
         //Look around 
-        float angle = Mathf.Atan2(rotation.x, -rotation.y) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(rotation.x, -rotation.y) * Mathf.Rad2Deg;
         _rotator.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     {
         var vectorRead = ctx.ReadValue<Vector2>();
         rotation = new Vector2(vectorRead.x, vectorRead.y);
-        
     }
     
 }

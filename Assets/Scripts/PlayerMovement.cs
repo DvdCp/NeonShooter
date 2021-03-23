@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         //Look around 
         var angle = Mathf.Atan2(rotation.x, -rotation.y) * Mathf.Rad2Deg;
         _rotator.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        
+
     }
 
     private void OnTriggerEnter(Collider other) 

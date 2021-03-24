@@ -55,7 +55,7 @@ public class WeaponSlot : MonoBehaviour
         _attualWeaponScript.IsPicked = true;
         _attualWeaponScript.GetComponent<Collider>().isTrigger = true;
 
-        _weaponTimer = _attualWeaponScript.TimeToLive;
+        _weaponTimer = _attualWeaponScript.TimeToLiveOnPlayer;
         isNewWeaponPicked = true;
     }
 

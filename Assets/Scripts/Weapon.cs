@@ -5,27 +5,37 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected GameObject _bulletPrefab;
     [SerializeField] protected Transform _weaponMuzzle;
     [SerializeField] private bool isDefaultWeapon;
-    [SerializeField] [Range (0f, 10f)]private float timeToLive;
+    [SerializeField] [Range (0f, 10f)]private float timeToLiveOnPlayer, timeToLiveOnGround;
     [SerializeField] private bool allowButtonHold;
     private bool isPicked, readyToShoot;
+    private float _timer;
     
     /***PROPERTIERS***/
     public bool IsDefaultWeapon { get => isDefaultWeapon; set => isDefaultWeapon = value; }
-    public float TimeToLive { get => timeToLive; set => timeToLive = value; }
+    public float TimeToLiveOnPlayer { get => timeToLiveOnPlayer; set => timeToLiveOnPlayer = value; }
+    public float TimeToLiveOnGround { get => timeToLiveOnGround; set => timeToLiveOnGround = value; }
     public bool IsPicked { get => isPicked; set => isPicked = value; }
     public bool ReadyToShoot { get => readyToShoot; set => readyToShoot = value; }
     public bool AllowButtonHold { get => allowButtonHold; set => allowButtonHold = value; }
-
+    
     void Start() 
     {
         ReadyToShoot = true;
-        Debug.Log(gameObject.name +" is RTS: "+ readyToShoot);
+        _timer = 0f;
     }
 
     void Update() 
     {
+        _timer += Time.deltaTime;
+
         if(!IsPicked)
-            HighlightWeapon();
+        {
+             HighlightWeapon();
+
+             if(_timer > TimeToLiveOnGround)
+                Destroy(gameObject);
+        }
+           
     }
 
     public abstract void Shoot();

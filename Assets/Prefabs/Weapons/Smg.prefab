@@ -325,7 +325,8 @@ MonoBehaviour:
     type: 3}
   _weaponMuzzle: {fileID: 3525771803043381925}
   isDefaultWeapon: 0
-  timeToLive: 10
+  timeToLiveOnPlayer: 5
+  timeToLiveOnGround: 7
   allowButtonHold: 1
   rateoOfFire: 10
 --- !u!1 &8302690606706880538

@@ -239,5 +239,7 @@ MonoBehaviour:
     type: 3}
   _weaponMuzzle: {fileID: 4285124370250195011}
   isDefaultWeapon: 1
-  timeToLive: 0
+  timeToLiveOnPlayer: 0
+  timeToLiveOnGround: 0
+  damagePerBullet: 20
   allowButtonHold: 0

@@ -10,7 +10,8 @@ public class Smg : Weapon
         {
             ReadyToShoot = false;
 
-            Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+            var bullet = Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+            bullet.GetComponent<Bullet>().Damage = base.damagePerBullet;
 
             if(AllowButtonHold)
                 Invoke("ResetShoot", 1/rateoOfFire);

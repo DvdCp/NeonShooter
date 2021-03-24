@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        _weaponSlot.PickWeapon(other.gameObject); 
+        if(other.GetComponent<Weapon>() != null)
+            _weaponSlot.PickWeapon(other.gameObject); 
     }
 
     public void Move (InputAction.CallbackContext ctx)

@@ -327,6 +327,7 @@ MonoBehaviour:
   isDefaultWeapon: 0
   timeToLiveOnPlayer: 5
   timeToLiveOnGround: 7
+  damagePerBullet: 15
   allowButtonHold: 1
   rateoOfFire: 10
 --- !u!1 &8302690606706880538

@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletSpeed;
-    public float timeToLive;
-    public Rigidbody2D rb;
-    private float timer;
+    [SerializeField] private float bulletSpeed, timeToLive;
+    private float timer, damage;
+    public Rigidbody rb;
+
+    public float Damage { get => damage; set => damage = value; }
+
     void Start()
     {
         rb.velocity = transform.up * bulletSpeed; 
@@ -19,6 +21,17 @@ public class Bullet : MonoBehaviour
 
         if(timer >= timeToLive)
             Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        var enemyPlayer = other.GetComponent<PlayerHealth>();
+
+        if(enemyPlayer != null)
+        {
+            enemyPlayer.TakeDamage(Damage);
+            Destroy(gameObject);
+        }
     }
     
 }

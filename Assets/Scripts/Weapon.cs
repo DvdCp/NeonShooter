@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected Transform _weaponMuzzle;
     [SerializeField] private bool isDefaultWeapon;
     [SerializeField] [Range (0f, 10f)]private float timeToLiveOnPlayer, timeToLiveOnGround;
+    [SerializeField] protected float damagePerBullet;
     [SerializeField] private bool allowButtonHold;
     private bool isPicked, readyToShoot;
     private float _timer;

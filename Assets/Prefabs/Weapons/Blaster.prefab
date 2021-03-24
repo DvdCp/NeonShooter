@@ -379,6 +379,7 @@ MonoBehaviour:
   isDefaultWeapon: 0
   timeToLiveOnPlayer: 5
   timeToLiveOnGround: 7
+  damagePerBullet: 10
   allowButtonHold: 0
   numberOfPelletsPerShot: 5
 --- !u!65 &4838457124699441009

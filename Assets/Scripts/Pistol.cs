@@ -8,7 +8,8 @@ public class Pistol : Weapon
         {
             ReadyToShoot = false;
 
-            Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+            var bullet = Instantiate(_bulletPrefab, _weaponMuzzle.position, _weaponMuzzle.rotation);
+            bullet.GetComponent<Bullet>().Damage = base.damagePerBullet;
         }
     }
 }

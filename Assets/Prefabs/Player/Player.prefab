@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7673202204312438512}
   - component: {fileID: 3679453696445950182}
   - component: {fileID: 7673202204312438514}
+  - component: {fileID: 7995526838717332203}
   - component: {fileID: 7673202204312438513}
   m_Layer: 0
   m_Name: Player
@@ -127,6 +128,19 @@ MonoBehaviour:
   _weaponSlot: {fileID: 7673202205020386582}
   speed: 5
   rotationSpeed: 30
+--- !u!114 &7995526838717332203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673202204312438515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32578f64f828a5140a7e9f501daea495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifePoints: 100
 --- !u!114 &7673202204312438513
 MonoBehaviour:
   m_ObjectHideFlags: 0

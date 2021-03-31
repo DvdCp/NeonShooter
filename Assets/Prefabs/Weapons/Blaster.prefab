@@ -418,7 +418,6 @@ MonoBehaviour:
   damagePerBullet: 10
   allowButtonHold: 0
   numberOfPelletsPerShot: 5
-  rt: {fileID: 6957129748720671108}
 --- !u!65 &4838457124699441009
 BoxCollider:
   m_ObjectHideFlags: 0

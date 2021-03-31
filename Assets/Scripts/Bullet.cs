@@ -5,13 +5,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed, timeToLive;
     private float timer, damage;
-    public Rigidbody rb;
+    public Rigidbody rigidBody;
+    public MeshRenderer meshRenderer;
 
     public float Damage { get => damage; set => damage = value; }
 
     void Start()
     {
-        rb.velocity = transform.up * bulletSpeed; 
+        rigidBody.velocity = transform.up * bulletSpeed; 
         timer= 0f;      
     }
 
@@ -25,13 +26,20 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
-        var enemyPlayer = other.GetComponent<PlayerHealth>();
+        var target = other.GetComponent<PlayerHealth>();
 
-        if(enemyPlayer != null)
+        if(target != null)
         {
-            enemyPlayer.TakeDamage(Damage);
+            target.TakeDamage(Damage);
             Destroy(gameObject);
         }
+        else if( other.gameObject.tag.Equals("Shield"))
+        {
+            enabled = false;
+            meshRenderer.enabled = false;
+            Destroy(gameObject);
+        }
+            
     }
     
 }

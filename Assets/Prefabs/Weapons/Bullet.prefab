@@ -77,7 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 30
   timeToLive: 2
-  rb: {fileID: 9066260554485050142}
+  rigidBody: {fileID: 9066260554485050142}
+  meshRenderer: {fileID: 8390751334503823348}
 --- !u!1 &3057898933934712587
 GameObject:
   m_ObjectHideFlags: 0

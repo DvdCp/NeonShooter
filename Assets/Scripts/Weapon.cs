@@ -3,7 +3,7 @@
 public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected GameObject _bulletPrefab;
-    [SerializeField] protected Transform _weaponMuzzle;
+    [SerializeField] protected RectTransform _weaponMuzzle;
     [SerializeField] private bool isDefaultWeapon;
     [SerializeField] [Range (0f, 10f)]private float timeToLiveOnPlayer, timeToLiveOnGround;
     [SerializeField] protected float damagePerBullet;

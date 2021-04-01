@@ -4,39 +4,24 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float lifePoints;
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private Transform respawnPoint;
+    [SerializeField] private RespawnSystem respawnSystem;
     private float remainingLifePoints;
 
     void Awake() 
     {
-        remainingLifePoints = lifePoints;
+        ResetHealth();
     }
     
-    void Update() 
-    {
-        if(remainingLifePoints <= 0)
-            Die();
-    }
     public void TakeDamage(float damage)
     {
-        Debug.Log("damage recorded: "+ damage);
         remainingLifePoints -= damage;
         
-        Debug.Log("life points remains: "+ remainingLifePoints);
+        if(remainingLifePoints <= 0)
+            respawnSystem.DieAndRespawn(gameObject);    
     }
 
-    private void Die()
+    public void ResetHealth()
     {
-        //Destroy(gameObject);
-
-        gameObject.SetActive(false);
-        StartCoroutine(Respawn());
-    }
-
-    private IEnumerator Respawn()
-    {
-        yield return new WaitForSeconds(3f);
-        Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+        remainingLifePoints = lifePoints;
     }
 }
